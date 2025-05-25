@@ -1,7 +1,7 @@
 import random
 
 numsort = random.randint(1,100)
-print(numsort)
+
 tentativa1 = int(input('que número você quer chutar?'))
 #verifica se você acetou o número 
 if tentativa1 == numsort:
@@ -46,7 +46,7 @@ if tentativa1 != numsort:
         if tentativa3 < numsort and tentativa1 > numsort and tentativa1 > tentativa2 and tentativa1 > tentativa3 and tentativa3 > tentativa2:
             print('suas opções são de',tentativa3,'até',tentativa1)
         if tentativa3 < numsort and tentativa1 > numsort and tentativa1 > tentativa2 and tentativa1 > tentativa3 and tentativa3 < tentativa2:
-            print('suas opções são de',tentativa2,'até',tentativa1)
+            print('suas opções são de',tentativa3,'até',tentativa2)
         if tentativa3 > numsort and tentativa2 < numsort and tentativa2 < tentativa1 and tentativa2 < tentativa3 and tentativa3 > tentativa1:
             print('suas opções são de',tentativa2,'até',tentativa1)
         if tentativa3 > numsort and tentativa2 < numsort and tentativa2 < tentativa1 and tentativa2 < tentativa3 and tentativa3 < tentativa1:
