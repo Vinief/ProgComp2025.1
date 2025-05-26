@@ -76,5 +76,5 @@ if mf >= 1:
             df += 31
 #calcula os dias
 dias = df - di - 1
-if dias > 0:
+if 365 > dias > 0:
     print ('esse é o total de dias:',dias)
