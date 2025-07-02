@@ -1,0 +1,9 @@
+conta = int(input("Valor da conta: "))
+pago  = int(input("Valor pago: "))
+troco = pago - conta
+Notas = [200,100,50,20,10,5,2,1]
+for nota in Notas:
+    quantidade_notas = troco//nota
+    troco %= nota 
+    print(f'notas de {nota}:{quantidade_notas}')
+##############################################################################
