@@ -16,28 +16,23 @@ Fonte = [
 " A:::::A                 A:::::A B::::::::::::::::B       CCC::::::::::::CD::::::::::::DDD     E::::::::::::::::::::EF::::::::FF                GGG::::::GGG:::GH:::::::H     H:::::::HI::::::::I   JJ:::::::::JJ     K:::::::K    K:::::KL::::::::::::::::::::::LM::::::M               M::::::MN::::::N        N::::::N   OO:::::::::OO   P::::::::P             QQ:::::::::::Q  R::::::R     R:::::RS:::::::::::::::SS       T:::::::::T          UU:::::::::UU               V:::V                      W:::W           W:::W           X:::::X       X:::::X    Y:::::::::::Y    Z:::::::::::::::::Z   00:::::::::00   1::::::::::12::::::::::::::::::23:::::::::::::::33         4::::::::4   55:::::::::55      66:::::::::66    7::::::7              88:::::::::88       9::::::9       ",
 "AAAAAAA                   AAAAAAABBBBBBBBBBBBBBBBB           CCCCCCCCCCCCCDDDDDDDDDDDDD        EEEEEEEEEEEEEEEEEEEEEEFFFFFFFFFFF                   GGGGGG   GGGGHHHHHHHHH     HHHHHHHHHIIIIIIIIII     JJJJJJJJJ       KKKKKKKKK    KKKKKKKLLLLLLLLLLLLLLLLLLLLLLLLMMMMMMMM               MMMMMMMMNNNNNNNN         NNNNNNN     OOOOOOOOO     PPPPPPPPPP               QQQQQQQQ::::QQRRRRRRRR     RRRRRRR SSSSSSSSSSSSSSS         TTTTTTTTTTT            UUUUUUUUU                  VVV                        WWW             WWW            XXXXXXX       XXXXXXX    YYYYYYYYYYYYY    ZZZZZZZZZZZZZZZZZZZ     000000000     11111111111122222222222222222222 333333333333333           4444444444     555555555          666666666     77777777                 888888888        99999999        "
 ]
-nome = input('Dig:')
+
+
+letra = input('dig:')
+
+menor = 0
+maior = 0
 cont = 0
-con_2 = 0
-cont3 = 0
-cont4 = 1
-for letra in nome:
-    for linha in Fonte:
-        for a in linha:
-            if letra.upper() == a:
-                letra_atual = a
-                con_2 += 1
-            if letra.upper() != a and con_2 > 0 and a != ' 'and cont3 == 0:
-                cont3 += 1
-                proxima = a
-            if letra.upper() != a and cont3 == 0 and a != ' ' and con_2 == 0:
-                anterior = a
-                cont += 1
-            if cont4 > 0:
-                break
-            if cont > 0 and con_2 > 0 and cont3 > 0:
-                for linha in Fonte:
-                    for a in linha.split(anterior):
-                        for b in a.split(proxima):
-                            if letra_atual in b:
-                                print(b)
+
+
+for linha in Fonte:
+    iniciaA = linha.find(letra.upper())
+    if menor > iniciaA or cont == 0 :
+        menor = iniciaA 
+        cont = 1
+    finA = linha.rfind(letra.upper())
+    if maior < finA:
+        maior = finA 
+    
+for linha in Fonte:
+    print(linha[menor:maior+1])
