@@ -1,0 +1,45 @@
+import random
+palavras = ['pauta','aureo','disco','pelos','feios','belos','anzol','tonto','ponto','conta',]
+
+VERMELHO = "\033[0;31m"
+VERDE = '\033[0;32m'
+PADRAO = '\033[0m'
+AMARELO = '\033[1;33m'
+letras = ''
+segredo = palavras[random.randint(0,len(palavras)-1)].upper()
+tentativas = 0
+while tentativas < 6: 
+    print(letras)
+    chute = input('dig:').upper()
+    posição = 0
+    letras = ''
+    for a in chute:
+        posicao_chute = 0
+        conf = 0
+        conf_certa = 0
+        for b in segredo:
+            #print(a,b,posicao_chute)
+            if a == b and posição == posicao_chute:
+                conf_certa += 1
+                letras += VERDE
+                letras += a
+                letras += PADRAO
+            if a == b and posição != posicao_chute and conf_certa == 0:
+                conf += 1
+                letras += AMARELO
+                letras += a
+                letras += PADRAO
+            if conf_certa == 0 and a != b and posicao_chute == 4 and conf == 0:
+                letras += VERMELHO
+                letras += a
+                letras += PADRAO 
+
+            posicao_chute += 1
+        posição += 1
+    if chute == segredo:
+        print(f'parabens voce acertou o termo de hj{letras}')
+        break
+    if chute == 'PARE':
+        break
+    tentativas += 1
+print(letras)
