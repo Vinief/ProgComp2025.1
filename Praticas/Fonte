@@ -49,4 +49,3 @@ while start < len(Fonte)-2 :
         
         start += 1
         contador2 = 0
-    parar += 1
