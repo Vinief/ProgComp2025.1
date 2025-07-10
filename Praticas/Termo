@@ -8,38 +8,45 @@ AMARELO = '\033[1;33m'
 letras = ''
 segredo = palavras[random.randint(0,len(palavras)-1)].upper()
 tentativas = 0
-while tentativas < 6: 
-    print(letras)
-    chute = input('dig:').upper()
-    posição = 0
+nao_pertence = []
+chute = input('dig:')
+while tentativas < 6 and len(chute) == 5 and chute != segredo: 
+    
+    if tentativas > 0:
+        chute = input('dig:').upper()
     letras = ''
-    for a in chute:
-        posicao_chute = 0
-        conf = 0
-        conf_certa = 0
-        for b in segredo:
-            #print(a,b,posicao_chute)
-            if a == b and posição == posicao_chute:
-                conf_certa += 1
+    
+    for pos_chute in range(len(chute)-1):
+        posicao_segredo = 0
+        conf = True
+        conf_certa = True
+    
+        for pos_segredo in range(len(segredo)-1):
+            if chute[pos_chute] == segredo[pos_segredo]:
+                conf_certa = False
                 letras += VERDE
-                letras += a
+                letras += chute[pos_chute]
                 letras += PADRAO
-            if a == b and posição != posicao_chute and conf_certa == 0:
-                conf += 1
+            if chute[pos_chute] in segredo == True and posicao_segredo == 4 and conf_certa == 0:
+                conf = False
                 letras += AMARELO
-                letras += a
+                letras += chute[pos_chute]
                 letras += PADRAO
-            if conf_certa == 0 and a != b and posicao_chute == 4 and conf == 0:
+            if conf_certa  and conf and pos_segredo == 4:
                 letras += VERMELHO
-                letras += a
+                letras += chute[pos_chute]
                 letras += PADRAO 
-
-            posicao_chute += 1
-        posição += 1
-    if chute == segredo:
-        print(f'parabens voce acertou o termo de hj{letras}')
-        break
-    if chute == 'PARE':
-        break
+                if chute [pos_chute] in nao_pertence == False:
+                    nao_pertence += chute[pos_chute] 
+    
+    print(f'letras que nao pertecem a palavra{nao_pertence}',end='')
+    print(letras)
+    
     tentativas += 1
+
+if chute == segredo:
+    print(f'parabens você acertou o TERMO de hj{chute}')
+
+
+
 print(letras)
