@@ -9,34 +9,35 @@ letras = ''
 segredo = palavras[random.randint(0,len(palavras)-1)].upper()
 tentativas = 0
 nao_pertence = []
-chute = input('dig:')
+chute = input('dig:').upper()
 while tentativas < 6 and len(chute) == 5 and chute != segredo: 
     
     if tentativas > 0:
         chute = input('dig:').upper()
     letras = ''
     
-    for pos_chute in range(len(chute)-1):
-        posicao_segredo = 0
+    for pos_chute in range(len(chute)):
+        
         conf = True
         conf_certa = True
     
-        for pos_segredo in range(len(segredo)-1):
-            if chute[pos_chute] == segredo[pos_segredo]:
+        for pos_segredo in range(len(segredo)):
+            if pos_segredo == pos_chute and chute[pos_chute] == segredo[pos_segredo] and conf_certa:
                 conf_certa = False
                 letras += VERDE
                 letras += chute[pos_chute]
                 letras += PADRAO
-            if chute[pos_chute] in segredo == True and posicao_segredo == 4 and conf_certa == 0:
+            if chute[pos_chute] in segredo and conf_certa and pos_segredo == 4:
                 conf = False
                 letras += AMARELO
                 letras += chute[pos_chute]
                 letras += PADRAO
+            print(conf,conf_certa,pos_segredo)
             if conf_certa  and conf and pos_segredo == 4:
                 letras += VERMELHO
                 letras += chute[pos_chute]
                 letras += PADRAO 
-                if chute [pos_chute] in nao_pertence == False:
+                if chute [pos_chute] not in nao_pertence:
                     nao_pertence += chute[pos_chute] 
     
     print(f'letras que nao pertecem a palavra{nao_pertence}',end='')
@@ -46,6 +47,10 @@ while tentativas < 6 and len(chute) == 5 and chute != segredo:
 
 if chute == segredo:
     print(f'parabens você acertou o TERMO de hj{chute}')
+
+
+
+print(letras)
 
 
 
