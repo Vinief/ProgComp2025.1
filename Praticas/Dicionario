@@ -1,0 +1,21 @@
+import requests, json
+valores = []
+try:
+    dados = requests.get("https://api.cartola.globo.com/atletas/mercado").text
+    atletas = json.loads(dados)["atletas"]
+    posicoes = json.loads(dados)["posicoes"]
+    '''   for atleta in atletas:
+        if atleta["clube_id"] == 263: # Botafogo/RJ
+            print (f"{atleta['apelido']} -> {atleta['nome']}")
+    '''
+    botafogo = filter (lambda x: x['clube_id'] == 263, atletas)
+    for atleta in botafogo:
+        #print (f"{atleta['apelido']} -> {atleta['nome']} {atleta['preco_num']}")
+        posiçao = atleta['posicao_id']
+        valores += [(atleta['preco_num'],atleta['apelido'], atleta['nome'],atleta['posicao_id'])]   
+    ordem = sorted(valores, key = lambda x: x[0], reverse = True)
+    for a in ordem:
+        posicao = str(a[3])
+        print(a[0:3],posicoes[posicao]['nome'])
+except json.decoder.JSONDecodeError as e:
+    print ("Erro na conversão de JSON para dicionario")
