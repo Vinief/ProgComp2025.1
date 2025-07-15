@@ -1,0 +1,31 @@
+import requests, json
+valores = []
+
+dados = requests.get("https://api.cartola.globo.com/atletas/mercado").text
+atletas = json.loads(dados)["atletas"]
+posicoes = json.loads(dados)["posicoes"]
+clubes = json.loads(dados)["clubes"]
+
+time = filter (lambda x: x['clube_id'] == id, atletas)
+
+variavel = input('dig:')
+
+
+
+for clube in clubes:
+    if clubes[clube]['nome_fantasia'] == variavel:
+        id = clubes[clube]['id']
+        print(id)
+
+
+for atleta in time:
+
+    posiçao = atleta['posicao_id']
+    
+    valores += [(atleta['preco_num'],atleta['apelido'], atleta['nome'],atleta['posicao_id'])]   
+
+ordem = sorted(valores, key = lambda x: x[0], reverse = True)
+for a in ordem:
+    posicao = str(a[3])
+    print(a[0:3],posicoes[posicao]['nome'])
+
