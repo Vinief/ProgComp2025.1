@@ -4,28 +4,48 @@ diaria = int(input('quantas passagens voce usa por dia:'))
 semanal = int(input('quantas vezes por semana:'))
 passagem_disponivel = float(input('passagem disponivel:'))
 
+dados = {}
 
-def passagem_diaria (diaria):
+##### quanto eh gasto em um dia #####
+
+def gasto_diario (diaria):
     if diaria > 0:
         gasto_diario =  passagem_interia*diaria
+        dados['diario'] = {'inteira':gasto_diario , 'meia' :gasto_diario/2}
+
         return gasto_diario
     else:
         resposta = 'digite um numero positivo'
         return resposta
 
-def passagem_semanal (semana):
-    if 7 > semana > 0 and passagem_diaria(diaria) > 0:
-        gasto_semanal = passagem_diaria(diaria)*semana
-        return gasto_semanal
+gasto_diario(diaria)
+
+print(dados)
+##### quanto eh gasto na semana #####
+
+def gasto_semanal (semana):
+    if 7 > semana > 0 and gasto_diario(diaria) > 0:
+        custo_semanal = gasto_diario(diaria)*semana
+        dados['semanal'] = {'inteira':custo_semanal , 'meia' :custo_semanal/2}
+        return custo_semanal
     else:
         resposta = 'digite um numero positivo:'
         return resposta        
 
+##### para quantas semanas suas passagens duram #####
+def passagem_semanal ():
+    passagem_semana = passagem_disponivel//gasto_semanal(semanal)
+    return passagem_semana
 
+def passagem_diaria ():
+    passagem_diaria = passagem_disponivel//gasto_diario(diaria)
+    return passagem_diaria
 
-print(f'dias: {round(passagem_diaria(diaria)//passagem_disponivel)}' /  
-        f'semanas:{round(passagem_semanal(semanal)//passagem_disponivel)}' /
-        f'total: semana: {round(passagem_semanal(semanal))} dia:{round((passagem_semanal%semanal)//diaria)}'
-        f'(meia)dias: {round(passagem_diaria(diaria)//passagem_disponivel)}' /  
-        f'(meia)semanas:{round(passagem_semanal(semanal)//passagem_disponivel)}' /
-        f'(meia)total: semana:{round(passagem_semanal(semanal))} dia:{round((passagem_semanal()%semanal)//diaria)}')
+def passagem_total():
+    total = passagem_disponivel/passagem_interia
+    return total
+print(passagem_total())
+
+print(f'{'interia':^15s}| {'meia':^}\n'+
+      f'{f'diaria:':^}' + f' {passagem_diaria()}\n'+
+      f'{f'semanal:':^}'+ f' {passagem_semanal()}\n')
